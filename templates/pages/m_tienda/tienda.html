@@ -1,0 +1,102 @@
+{% extends 'base/base.html' %}
+{% block title %}Tienda | PixelGame{% endblock title %}
+{% block content %}
+<main class="container">
+    <section class="row">
+        <section class="col-12 my-2">
+            <div class="container">
+                <h1 class="text-white">Tienda</h1>
+            </div>
+        </section>
+        <section class="col-3 text-white">
+            <form action="{% url 'filtrar_productos' %}" method="post" id="filtrosForm">
+                {% csrf_token %}
+                <div class="bg-dark mb-1 text-center py-1">
+                    <h6>Nombre del producto</h6>
+                    <div class="input-group input-group-sm mb-3 w-75 mx-auto">
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" id="search">
+                        <label class="input-group-text" id="inputGroup-sizing-sm" for="search"><i
+                                class="bi bi-search"></i></label>
+                    </div>
+                </div>
+                <div class="bg-dark mb-1">
+                    <button id="tipo" class="btn text-white w-100 d-flex justify-content-between"
+                        data-bs-toggle="collapse" data-bs-target="#tipo_colapse" type="button">
+                        <span>Tipo</span>
+                        <i class="bi bi-arrow-down"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="tipo_colapse">
+                        <ul class="w-100 navbar-nav px-2">
+                            {% for tipo in tipos %}
+                            <li class="nav-item">
+                                <label for="tipo-{{tipo.id}}" class="w-100">
+                                    <div>
+                                        <input type="checkbox" id="tipo-{{tipo.id}}" onchange="enviarFiltros()" {%if tipo.id == '1' %}checked{% endif %}
+                                        name="tipo" value ="{{tipo.id}}">
+                                        <span>{{tipo.nombre}}</span>
+                                    </div>
+                                </label>
+                            </li>
+                            {% endfor %}
+                            {{ tipos_seleccionados }}
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-dark mb-1">
+                    <button id="genero" class="btn text-white w-100 d-flex justify-content-between"
+                        data-bs-toggle="collapse" data-bs-target="#genero_colapse" type="button">
+                        <span>Genero</span>
+                        <i class="bi bi-arrow-down"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="genero_colapse">
+                        <ul class="w-100 navbar-nav px-2">
+                            {% for genero in generos %}
+                            <li class="nav-item">
+                                <label for="genero-{{genero.id}}" class="w-100">
+                                    <div>
+                                        <input type="checkbox" id="genero-{{genero.id}}" onchange="enviarFiltros()">
+                                        <span>{{genero.nombre}}</span>
+                                    </div>
+                                </label>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-dark mb-1">
+                    <button id="plataforma" class="btn text-white w-100 d-flex justify-content-between"
+                        data-bs-toggle="collapse" data-bs-target="#plataforma_colapse" type="button">
+                        <span>Plataforma</span>
+                        <i class="bi bi-arrow-down"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="plataforma_colapse">
+                        <ul class="w-100 navbar-nav px-2">
+                            {% for plataforma in plataformas %}
+                            <li class="nav-item">
+                                <label for="plataforma-{{plataforma.id}}" class="w-100">
+                                    <div>
+                                        <input type="checkbox" id="plataforma-{{plataforma.id}}" onchange="enviarFiltros()">
+                                        <span>{{plataforma.nombre}}</span>
+                                    </div>
+                                </label>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <section class="col-9 bg-info">
+            <div class="row">
+                {{ productos }}
+            </div>
+        </section>
+    </section>
+    <script>
+        function enviarFiltros() {
+            document.getElementById("filtrosForm").submit();
+        }
+    </script>
+</main>
+{% endblock content %}

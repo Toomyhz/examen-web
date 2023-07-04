@@ -24,8 +24,9 @@ from django.urls.conf import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
+    path('', index, name='inicio'),
     path('', include('apps.m_user.urls')),
+    path('tienda/', include('apps.m_tienda.urls')),
 ]
 if settings.DEBUG == True:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
