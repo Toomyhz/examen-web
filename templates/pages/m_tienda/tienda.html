@@ -5,41 +5,46 @@
     <section class="row">
         <section class="col-12 my-2">
             <div class="container">
-                <h1 class="text-white">Tienda</h1>
+                <h2 class="text-white">Tienda</h2>
             </div>
         </section>
         <section class="col-3 text-white">
-            <form action="{% url 'filtrar_productos' %}" method="post" id="filtrosForm">
-                {% csrf_token %}
-                <div class="bg-dark mb-1 text-center py-1">
-                    <h6>Nombre del producto</h6>
+                <form action="{% url 'buscar' %}" method="POST" >
+                    {% csrf_token %}
+                    <div class="bg-dark mb-1 text-center py-1">
+                        <h6>Nombre del producto</h6>
                     <div class="input-group input-group-sm mb-3 w-75 mx-auto">
                         <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm" id="search">
-                        <label class="input-group-text" id="inputGroup-sizing-sm" for="search"><i
-                                class="bi bi-search"></i></label>
+                        aria-describedby="inputGroup-sizing-sm" id="busqueda" name="busqueda">
+                        <button class="input-group-text" id="inputGroup-sizing-sm" type="submit"><i
+                            class="bi bi-search"></i></button>
+                        </div>
                     </div>
-                </div>
+                </form>
+                <form action="{% url 'filtrar_productos' %}" method="post" id="filtrosForm">
+                    {% csrf_token %}
                 <div class="bg-dark mb-1">
                     <button id="tipo" class="btn text-white w-100 d-flex justify-content-between"
                         data-bs-toggle="collapse" data-bs-target="#tipo_colapse" type="button">
                         <span>Tipo</span>
                         <i class="bi bi-arrow-down"></i>
                     </button>
-                    <div class="collapse navbar-collapse" id="tipo_colapse">
+                    <div class="collapse show" id="tipo_colapse">
                         <ul class="w-100 navbar-nav px-2">
                             {% for tipo in tipos %}
                             <li class="nav-item">
                                 <label for="tipo-{{tipo.id}}" class="w-100">
-                                    <div>
-                                        <input type="checkbox" id="tipo-{{tipo.id}}" onchange="enviarFiltros()" {%if tipo.id == '1' %}checked{% endif %}
-                                        name="tipo" value ="{{tipo.id}}">
-                                        <span>{{tipo.nombre}}</span>
+                                    <div class="justify-content-between d-flex align-items-center">
+                                        <div>
+                                            <input type="checkbox" id="tipo-{{tipo.id}}" onchange="enviarFiltros()" {%if tipo.id in tipos_seleccionados %}checked{% endif %}
+                                            name="tipo" value ="{{tipo.id}}">
+                                            <span>{{tipo.nombre}}</span>
+                                        </div>
+                                        <span class="badge bg-secondary">{{tipo.cantidad}}</span>
                                     </div>
                                 </label>
                             </li>
                             {% endfor %}
-                            {{ tipos_seleccionados }}
                         </ul>
                     </div>
                 </div>
@@ -49,14 +54,18 @@
                         <span>Genero</span>
                         <i class="bi bi-arrow-down"></i>
                     </button>
-                    <div class="collapse navbar-collapse" id="genero_colapse">
+                    <div class="collapse show" id="genero_colapse">
                         <ul class="w-100 navbar-nav px-2">
                             {% for genero in generos %}
                             <li class="nav-item">
                                 <label for="genero-{{genero.id}}" class="w-100">
-                                    <div>
-                                        <input type="checkbox" id="genero-{{genero.id}}" onchange="enviarFiltros()">
-                                        <span>{{genero.nombre}}</span>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>    
+                                            <input type="checkbox" id="genero-{{genero.id}}" onchange="enviarFiltros()" {%if genero.id in generos_seleccionados %}checked{% endif %}
+                                            name="genero" value="{{genero.id}}">
+                                            <span>{{genero.nombre}}</span>
+                                        </div>
+                                        <span class="badge bg-secondary">{{genero.cantidad}}</span>
                                     </div>
                                 </label>
                             </li>
@@ -70,14 +79,18 @@
                         <span>Plataforma</span>
                         <i class="bi bi-arrow-down"></i>
                     </button>
-                    <div class="collapse navbar-collapse" id="plataforma_colapse">
+                    <div class="collapse show" id="plataforma_colapse">
                         <ul class="w-100 navbar-nav px-2">
                             {% for plataforma in plataformas %}
                             <li class="nav-item">
                                 <label for="plataforma-{{plataforma.id}}" class="w-100">
-                                    <div>
-                                        <input type="checkbox" id="plataforma-{{plataforma.id}}" onchange="enviarFiltros()">
-                                        <span>{{plataforma.nombre}}</span>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <input type="checkbox" id="plataforma-{{ plataforma.id }}" onchange="enviarFiltros()" {%if plataforma.id in plataformas_seleccionados %}checked{% endif %}
+                                            name="plataforma" value="{{ plataforma.id }}">
+                                            <span>{{plataforma.nombre}}</span>
+                                        </div>
+                                        <span class="badge bg-secondary">{{plataforma.cantidad}}</span>
                                     </div>
                                 </label>
                             </li>
@@ -88,9 +101,42 @@
             </form>
         </section>
         <section class="col-9 bg-info">
-            <div class="row">
-                {{ productos }}
+            {% if mensaje %}
+            <div class="alert alert-warning" role="alert">
+                {{ mensaje }}
             </div>
+            {% else %}
+            <div class="row">
+                {% if cantidad_productos %}
+                <div>
+                    <h5>Resultados encontrados {{ cantidad_productos }}  </h5>
+                </div>
+                {% endif %}
+                {% if busqueda %}
+                <div>
+                    <h5>Resultados de la busqueda {{ busqueda }}  </h5>
+                </div>
+                {% endif %}
+                <section class="row mx-0">
+                    {% for producto in productos %}
+                        <article class="col">
+                            {{producto.nombre}}
+                            {% if producto.imagen %}
+                            <img src="{{producto.imagen.url}}" alt="{{producto.nombre}}" class="img-fluid">
+                            {% endif %}
+                            <p>{{producto.descripcion}}</p>
+                            <p>{{producto.precio}}</p>
+                            <p>{{producto.tipo}}</p>
+                            <p>{{producto.genero}}</p>
+                            <p>{{producto.plataforma}}</p>
+
+                        </article>
+
+                    {% endfor %}
+                </section>
+            </div>
+            {% endif %}
+            
         </section>
     </section>
     <script>
