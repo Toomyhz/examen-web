@@ -1,9 +1,14 @@
 <header class="w-100">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand">PixelGame</a>
-            <div class="collapse navbar-collapse d-flex justify-self-end" id="navbarNavDropdown">
-                <ul class="navbar-nav">
+            <a class="navbar-brand" href="{% url 'inicio' %}">PixelGame</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <form class="navbar-nav" action="{% url 'filtrar_productos' %}" method="POST">
+                    {% csrf_token %}
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'inicio' %}">Inicio</a>
                     </li>
@@ -11,21 +16,17 @@
                         <a class="nav-link" href="{% url 'tienda' %}">Tienda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Juegos</a>
+                        <input type="submit" class="nav-link" name="tipo" value="Juegos"></input>
+                    </li>
                     <li class="nav-item">
+                        <input class="nav-link" name="tipo" type="submit" value="Tarjetas"></input>
                     </li>
-                    <a class="nav-link" href="">Tarjetas</a>
-                    </li>
-                </ul>
+                </form>
             </div>
-            <div class="d-flex justify-self-end">
-                <a class="btn btn-outline-light me-2" href="">Iniciar sesión</a>
-                <a class="btn btn-warning" href="">Registrarse</a>
+            <div class="ms-auto">
+                <a class="btn btn-outline-light me-2" href="#">Iniciar sesión</a>
+                <a class="btn btn-warning" href="#">Registrarse</a>
             </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
         </div>
     </nav>
 </header>

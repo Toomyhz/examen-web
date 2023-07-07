@@ -1,5 +1,7 @@
 {% extends 'base/base.html' %}
 {% block title %}Tienda | PixelGame{% endblock title %}
+{% load humanize %}
+
 {% block content %}
 <main class="container">
     <section class="row">
@@ -100,7 +102,7 @@
                 </div>
             </form>
         </section>
-        <section class="col-9 bg-info">
+        <section class="col-9">
             {% if mensaje %}
             <div class="alert alert-warning" role="alert">
                 {{ mensaje }}
@@ -119,18 +121,22 @@
                 {% endif %}
                 <section class="row mx-0">
                     {% for producto in productos %}
-                        <article class="col">
-                            {{producto.nombre}}
-                            {% if producto.imagen %}
-                            <img src="{{producto.imagen.url}}" alt="{{producto.nombre}}" class="img-fluid">
-                            {% endif %}
-                            <p>{{producto.descripcion}}</p>
-                            <p>{{producto.precio}}</p>
-                            <p>{{producto.tipo}}</p>
-                            <p>{{producto.genero}}</p>
-                            <p>{{producto.plataforma}}</p>
-
-                        </article>
+                        <div class="col-3 py-3">
+                            <article class="card h-100 bg-dark pb-2">
+                                    {% if producto.imagen %}
+                                    <img src="{{producto.imagen.url}}" alt="{{producto.nombre}}" class="card-img-top">
+                                    {% else %}
+                                    <img src="" alt="{{producto.nombre}}" class="img-fluid card-img-top">
+                                    {% endif %}
+                                <div class="text-white">
+                                    {{ producto.nombre }}
+                                    <p class="fs-6">${{ producto.precio|floatformat:"0"|intcomma:"," }}</p>
+                                </div>
+                                <div class="d-flex justify-content-center buttom">
+                                    <a href="" class="btn btn-outline-light">Agregar al carrito</a>
+                                </div>
+                            </article>
+                        </div>
 
                     {% endfor %}
                 </section>

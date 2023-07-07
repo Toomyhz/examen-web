@@ -22,7 +22,7 @@ def tienda(request):
     for genero in generos:
             cantidad = productos.filter(genero=genero).count()
             genero.cantidad = cantidad
-
+    
     context = {
         'productos': productos,
         'generos': generos,
@@ -33,7 +33,14 @@ def tienda(request):
 
 def filtrar_productos(request):
     if request.method == 'POST':
-        tipos_seleccionados = request.POST.getlist('tipo')
+
+        if request.POST.get('tipo') == "Juegos":
+            tipos_seleccionados = [1]
+        elif request.POST.get('tipo') == "Tarjetas":
+            tipos_seleccionados = [2]
+        else:
+            tipos_seleccionados = request.POST.getlist('tipo')
+            
         generos_seleccionados = request.POST.getlist('genero')
         plataformas_seleccionados = request.POST.getlist('plataforma')
 

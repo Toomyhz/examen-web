@@ -1,8 +1,36 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block title %}Inicio | PixelGame{% endblock title %}
+{% block style %}
+{% static 'pages/index/css/index.css' %}
+{% endblock style %}
 {% block content %}
-<main class="container">
-
+<main class="container" style="background: linear-gradient(#e3e3e3, #ffc5c5);">
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <div id="Carrusel" class="carousel slide carousel-fade">
+                <section class="carousel-inner">
+                    <article class="carousel-item active">
+                        <img src="{% static 'pages/index/img/No_Image_Available.jpg' %}" alt="" class="d-block w-100">
+                    </article>
+                    <article class="carousel-item">
+                        <img src="{% static 'pages/index/img/No_image_available.png' %}" alt="" class="d-block w-100">
+                    </article>
+                </section>
+                <button class="carousel-control-prev" type="button" data-bs-target="#Carrusel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#Carrusel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <article class="col col-md-3 d-flex align-items-center">
+            <h2>Algunos de nuestros juegos</h2>
+        </article>
+    </div>
+    <h2>Proximos elementos...</h2>
 </main>
 {% endblock content %}
