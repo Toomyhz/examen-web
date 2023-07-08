@@ -1,5 +1,9 @@
 from django.shortcuts import render
-
+from apps.m_tienda.models import Producto
 
 def index(request):
-    return render(request, 'pages/index.html')
+    productos = Producto.objects.order_by('-id')[:3]
+    context = {
+        'productos':productos
+    }
+    return render(request, 'pages/index.html', context)

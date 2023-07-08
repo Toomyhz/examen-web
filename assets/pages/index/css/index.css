@@ -1,8 +1,57 @@
-img{
+@import url('https://fonts.cdnfonts.com/css/public-pixel');
+
+
+main {
+    background: linear-gradient(#090046, #54236f);
+    border-radius: 7px;
+}
+
+img {
     height: 300px;
     width: 100px;
 }
 
-est{
-    border-radius: 10px;
+h3 {
+    text-align: center;
+}
+
+article img {
+    border-radius: 17px;
+}
+
+.texto {
+    font-family: 'Public Pixel';
+    cursor: default;
+    transition: 0.3s;
+    color: #a7a7a7;
+}
+
+.texto:hover {
+    font-family: 'Public Pixel';
+    cursor: default;
+    text-shadow: 0px 0px 7px purple;
+    transition: 0.3s;
+}
+
+.texto2 {
+    font-family: 'Public Pixel';
+    cursor: default;
+    transition: 0.3s;
+    color: #a7a7a7;
+}
+
+.conte {
+    border-radius: 17px;
+    transition: 0.3s;
+}
+
+.conte:hover {
+    box-shadow: 0px 0px 7px 2px #fff;
+    border-radius: 17px;
+    transition: 0.3s;
+}
+
+.element {
+    display: flex;
+    justify-content: center;
 }

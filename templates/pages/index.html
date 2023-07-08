@@ -5,10 +5,10 @@
 {% static 'pages/index/css/index.css' %}
 {% endblock style %}
 {% block content %}
-<main class="container" style="background: linear-gradient(#e3e3e3, #ffc5c5);">
+<main class="container pb-3 mt-3">
     <div class="row">
-        <div class="col-12 col-md-8">
-            <div id="Carrusel" class="carousel slide carousel-fade">
+        <div class="col-12 col-md-8 mt-4">
+            <div id="Carrusel" class="carousel slid carousel-dark carousel-fade conte">
                 <section class="carousel-inner">
                     <article class="carousel-item active">
                         <img src="{% static 'pages/index/img/No_Image_Available.jpg' %}" alt="" class="d-block w-100">
@@ -28,9 +28,23 @@
             </div>
         </div>
         <article class="col col-md-3 d-flex align-items-center">
-            <h2>Algunos de nuestros juegos</h2>
+            <h2 class="texto">Algunos de nuestros juegos</h2>
         </article>
     </div>
-    <h2>Proximos elementos...</h2>
+    <h3 class="texto my-3">Ultimos productos agregados</h3>
+    <section class="row container element">
+        {% for producto in productos %}
+        <div class="card text-bg-dark mx-1" style="width: 18rem;">
+            <img src="{{producto.imagen.url}}" class="card-img-top mt-2" alt="...">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{producto.nombre}}</h5>
+                <p class="card-text">{{producto.descripcion}}</p>
+                <div class="mt-auto d-flex justify-content-center">
+                    <a href="{% url 'tienda' %}" class="btn btn-danger">Tienda</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
 </main>
 {% endblock content %}
