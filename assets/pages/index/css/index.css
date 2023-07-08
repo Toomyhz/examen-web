@@ -13,6 +13,7 @@ img {
 
 h3 {
     text-align: center;
+    text-shadow: 0px 0px 14px rgb(91, 91, 91);
 }
 
 article img {
@@ -29,7 +30,7 @@ article img {
 .texto:hover {
     font-family: 'Public Pixel';
     cursor: default;
-    text-shadow: 0px 0px 7px rgb(255, 0, 255);
+    text-shadow: 0px 0px 14px rgb(255, 0, 0);
     transition: 0.3s;
 }
 
@@ -58,4 +59,8 @@ article img {
 
 .game{
     text-shadow: 0px 0px 7px rgb(255, 0, 0);
+}
+
+.desc{
+    font-size: 12px;
 }
