@@ -14,7 +14,6 @@ class Carrito:
                 "nombre":producto.nombre,
                 "precio":str(producto.precio),
                 "cantidad":1,
-                "imagen":producto.imagen.url
             }
         else:
             for key, value in self.carrito.items():

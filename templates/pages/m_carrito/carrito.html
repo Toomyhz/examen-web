@@ -1,16 +1,18 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block title %}Carrito | PixelGame{% endblock title %}}
+{% block title %}Carrito | PixelGame{% endblock title %}
 {% block content %}
 <main class="container">
-    <section class="alert alert-success mt-3">
+    <section class="alert alert-dark mt-3" role="alert">
         <h2 class="text-center">Carrito de compras</h2>
+        {%if carrito %}
         <a href="{% url 'limpiar_carrito' %}" class="btn btn-danger">Vaciar carrito</a>
+        {% endif %}
     </section>
     <section>
         <div>
             {% if carrito %}
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover table-dark">
                 <thead>
                     <tr>
                         <th>Producto</th>
@@ -37,7 +39,6 @@
             {% else %}
             <div class="alert alert-warning">
                 <h3 class="text-center">No hay productos en el carrito</h3>
-
                 <a href="{% url 'tienda' %}" class="btn btn-danger">Ir a la tienda</a>
 
             </div>

@@ -18,6 +18,7 @@ def mostrar_carrito(request):
 def agregar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = Producto.objects.get(id=producto_id)
+
     carrito.agregar(producto=producto)
     return redirect('mostrar_carrito')
 

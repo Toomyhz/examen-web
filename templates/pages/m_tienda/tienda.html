@@ -132,9 +132,9 @@
                                     {% else %}
                                     <img src="" alt="{{producto.nombre}}" class="img-fluid card-img-top">
                                     {% endif %}
-                                <div class="text-white">
+                                <div class="text-white text-center ">
                                     {{ producto.nombre }}
-                                    <p class="fs-6">${{ producto.precio|floatformat:"0"|intcomma:"," }}</p>
+                                    <p class="fs-6"><b>  ${{ producto.precio|floatformat:"0"|intcomma:"," }}  </b></p>
                                 </div>
                                 <div class="d-flex justify-content-center buttom">
                                     <a href="{% url 'agregar_producto' producto_id=producto.id  %}" class="btn btn-outline-light">Agregar al carrito</a>
