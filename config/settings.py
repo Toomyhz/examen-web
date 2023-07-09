@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.m_tienda',
     'apps.m_user',
     'sweetify',
+    'apps.m_admin',
 ]
 
 MIDDLEWARE = [

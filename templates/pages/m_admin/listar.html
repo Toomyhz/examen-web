@@ -1,0 +1,64 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}
+Administrador | PixelGame
+{% endblock title %}
+
+{% block style %}
+{% static 'pages/m_admin/css/listar.css' %}
+{% endblock style %}
+{% block content %}
+
+
+<main class="container">
+    {% if user.is_staff %}
+    <h1 class="titulo">Administrador de productos</h1>
+    <div class="d-grid justify-content-end">
+        <div class="">
+            <div class="">
+                <a href="{% url 'crear_producto' %}" class="btn btn-primary">Crear Producto</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="dise">
+        <table class="table mt-4">
+
+            <thead>
+                <tr class="">
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="">
+                {% for producto in productos %}
+                <tr class="">
+                    <div class="cent">
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.descripcion }}</td>
+                        <td>{{ producto.precio }}</td>
+                    </div>
+                    <td class="">
+                        <a href="{% url 'editar_producto' producto.id %}" class="botones btn btn-sm btn-primary mb-1">Editar</a>
+                        <a href="{% url 'borrar_producto' producto.id %}" class="botones btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No hay productos disponibles.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h1 style="color: white; text-align: center;">No eres miembro administrativo</h1>
+        <div class="d-flex justify-content-center">
+            <a href="{% url 'inicio' %}" class="btn btn-danger" style="width: 200px;">Regresar</a>
+        </div>
+        {% endif %}
+    </section>
+</main>
+{% endblock content %}
