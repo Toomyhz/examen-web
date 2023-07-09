@@ -33,7 +33,7 @@ Administrador | PixelGame
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="">
                 {% for producto in productos %}
                 <tr class="">
                     <div class="cent">
@@ -41,9 +41,9 @@ Administrador | PixelGame
                         <td>{{ producto.descripcion }}</td>
                         <td>{{ producto.precio }}</td>
                     </div>
-                    <td class="d-grid">
-                        <a href="{% url 'editar_producto' producto.id %}" class="btn btn-sm btn-primary mb-1">Editar</a>
-                        <a href="{% url 'borrar_producto' producto.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                    <td class="">
+                        <a href="{% url 'editar_producto' producto.id %}" class="botones btn btn-sm btn-primary mb-1">Editar</a>
+                        <a href="{% url 'borrar_producto' producto.id %}" class="botones btn btn-sm btn-danger">Eliminar</a>
                     </td>
                 </tr>
                 {% empty %}
