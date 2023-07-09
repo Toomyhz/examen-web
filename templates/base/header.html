@@ -21,12 +21,6 @@
                     <li class="nav-item">
                         <input class="nav-link" name="tipo" type="submit" value="Tarjetas"></input>
                     </li>
-                    {% if user.is_staff %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'listar_adm' %}">Administrador de productos</a>
-                    </li>
-                    {% endif %}
-                    
                 </form>
             </div>
             <div class="ms-auto">
@@ -37,9 +31,12 @@
                         {{user.username}}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
-                      <li><a class="dropdown-item active" href="#">Mis compras</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                        {% if user.is_staff %}
+                            <li><a class="dropdown-item text-info active" href="{% url 'listar_adm' %}">Administrador de productos</a></li>
+                        {% endif %}
+                        <li><a class="dropdown-item " href="#">Mis compras</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Cerrar sesión</a></li>
                     </ul>
                   </div>
                 {% else %}

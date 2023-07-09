@@ -1,0 +1,66 @@
+@import url('https://fonts.cdnfonts.com/css/public-pixel');
+
+
+main {
+    background: linear-gradient(#090046, #54236f);
+    border-radius: 7px;
+}
+
+img {
+    height: 300px;
+    width: 100px;
+}
+
+h3 {
+    text-align: center;
+    text-shadow: 0px 0px 14px rgb(91, 91, 91);
+}
+
+article img {
+    border-radius: 17px;
+}
+
+.texto {
+    font-family: 'Public Pixel';
+    cursor: default;
+    transition: 0.3s;
+    color: #a7a7a7;
+}
+
+.texto:hover {
+    font-family: 'Public Pixel';
+    cursor: default;
+    text-shadow: 0px 0px 14px rgb(255, 0, 0);
+    transition: 0.3s;
+}
+
+.texto2 {
+    font-family: 'Public Pixel';
+    cursor: default;
+    transition: 0.3s;
+    color: #a7a7a7;
+}
+
+.conte {
+    border-radius: 17px;
+    transition: 0.3s;
+}
+
+.conte:hover {
+    box-shadow: 0px 0px 7px 2px #fff;
+    border-radius: 17px;
+    transition: 0.3s;
+}
+
+.element {
+    display: flex;
+    justify-content: center;
+}
+
+.game{
+    text-shadow: 0px 0px 7px rgb(255, 0, 0);
+}
+
+.desc{
+    font-size: 12px;
+}

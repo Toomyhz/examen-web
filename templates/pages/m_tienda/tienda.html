@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block title %}Tienda | PixelGame{% endblock title %}
 {% load humanize %}
 
@@ -130,7 +131,7 @@
                                     {% if producto.imagen %}
                                     <img src="{{producto.imagen.url}}" alt="{{producto.nombre}}" class="card-img-top">
                                     {% else %}
-                                    <img src="" alt="{{producto.nombre}}" class="img-fluid card-img-top">
+                                    <img src="{% static 'pages/index/img/No_Image_Available.jpg' %}" alt="{{producto.nombre}}" class="img-fluid card-img-top">
                                     {% endif %}
                                 <div class="text-white text-center ">
                                     {{ producto.nombre }}
