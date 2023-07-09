@@ -1,0 +1,71 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}
+Crear producto | PixelGame
+{% endblock title %}
+
+{% block style %}
+{% static 'pages/m_admin/css/listar.css' %}
+{% endblock style %}
+{% block content %}
+<main>
+    <section class="section mt-3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="fw-bold">Añadir producto</h2>
+                        </div>
+                        <div class="card-body">
+                            <form action="" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <section class="row">
+                                    <div class="mb-3">
+                                        Nombre
+                                        {{form.nombre}}
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Descripcion</label>
+                                        {{form.descripcion}}
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Precio</label>
+                                        {{form.precio}}
+                                    </div>
+                                    <hr class="hr" />
+                                    <div class="mb-3">
+                                        <label for="" class="form-label col-12">Imagen</label>
+                                        {{form.imagen}}
+                                    </div>
+                                    <hr class="hr" />
+                                    <div class="mb-3 col-6">
+                                        <label for="" class="form-label">Tipo</label>
+                                        {{form.tipo}}
+                                    </div>
+                                    <div class="mb-3 col-6">
+                                        <label for="" class="form-label">Genero</label>
+                                        {{form.genero}}
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Plataforma</label>
+                                        {{form.plataforma}}
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Consola</label>
+                                        {{form.consola}}
+                                    </div>
+                                </section>
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock content %}
