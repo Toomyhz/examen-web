@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'apps.m_compra',
     'apps.m_tienda',
     'apps.m_user',
+    'sweetify',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración de sweetify
+SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
+SWEETIFY_SWEETALERT_STYLE = 'sweetalert2'

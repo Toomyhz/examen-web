@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Entrar | PixelGame{% endblock title %}
+{% block content %}
+<main class="row mx-0 d-flex justify-content-center mt-5">
+    <section class="col-12 col-md-4">
+        <div class="bg-dark text-light text-center border rounded px-2">
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <h2>Entrar</h2>
+                <p>Por favor, complete el siguiente formulario para iniciar sesion.</p>
+                <section class="text-black row mx-1 justify-content-center">
+                    <fieldset class="form-floating mb-3 col-12 col-md-8 px-1">
+                        {{ form.username}}
+                        <label for="{{ form.username.id_for_label }}">{{ form.username.label}}</label>
+                    </fieldset>
+                    <fieldset class="form-floating mb-3 col-12 col-md-8 px-1">
+                        {{ form.password}}
+                        <label for="{{ form.password.id_for_label }}">{{ form.password.label}}</label>
+                    </fieldset>
+                    <div class="border-top border-light d-flex flex-column align-items-center">
+                        <button type="submit" class="btn btn-outline-light my-2 w-75">Iniciar sesión</button>
+                        <a class="btn btn-light my-2 d-md-inline w-75 d-none d-md-block" href="{% url 'register' %}">Registrarse</a>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </section>
+</main>
+{% endblock content %}

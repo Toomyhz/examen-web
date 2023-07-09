@@ -9,6 +9,8 @@ from django.forms import (
 )
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.core import validators
+from django.core.exceptions import ValidationError
 
 class FormRegister(UserCreationForm):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -25,6 +27,22 @@ class FormRegister(UserCreationForm):
                 'placeholder':'Ingrese su contraseña'
             }
         )
+
+    first_name = CharField(label='Nombre', max_length=100, widget=TextInput(attrs={'class':'form-control'}))
+    last_name = CharField(label='Apellido', max_length=100, widget=TextInput(attrs={'class':'form-control'}))
+
+    def clean_first_name(self):
+        first_name = self.cleaned_data.get('first_name')
+        if not first_name.isalpha():
+            raise ValidationError("Ingrese solo caracteres alfabéticos en el nombre.")
+        return first_name
+
+    def clean_last_name(self):
+        last_name = self.cleaned_data.get('last_name')
+        if not last_name.isalpha():
+            raise ValidationError("Ingrese solo caracteres alfabéticos en el apellido.")
+        return last_name
+    
     class Meta:
         model=User
         fields=[
@@ -38,18 +56,6 @@ class FormRegister(UserCreationForm):
                 attrs={
                     'class':'form-control',
                     'placeholder':'Ingrese su nombre de usuario'
-                }
-            ),
-            'first_name':TextInput(
-                attrs={
-                    'class':'form-control',
-                    'placeholder':'Ingrese su nombre'
-                }
-            ),
-            'last_name':TextInput(
-                attrs={
-                    'class':'form-control',
-                    'placeholder':'Ingrese su apellido'
                 }
             ),
             'email':EmailInput(

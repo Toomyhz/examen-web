@@ -9,8 +9,12 @@
             <div class="container">
                 <h2 class="text-white">Tienda</h2>
             </div>
+            <button class="btn btn-danger d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#filtros"
+                aria-expanded="false" aria-controls="filtros">
+                <i class="bi bi-filter"></i>
+            </button>
         </section>
-        <section class="col-3 text-white">
+        <section class="text-white collapse collapse-horizontal d-md-block col-12 col-md-3" id="filtros">
                 <form action="{% url 'buscar' %}" method="POST" >
                     {% csrf_token %}
                     <div class="bg-dark mb-1 text-center py-1">
@@ -102,7 +106,7 @@
                 </div>
             </form>
         </section>
-        <section class="col-9">
+        <section class="col-12 col-md-9">
             {% if mensaje %}
             <div class="alert alert-warning" role="alert">
                 {{ mensaje }}
@@ -121,7 +125,7 @@
                 {% endif %}
                 <section class="row mx-0">
                     {% for producto in productos %}
-                        <div class="col-3 py-3">
+                        <div class="py-3 col-12 col-md-3" >
                             <article class="card h-100 bg-dark pb-2">
                                     {% if producto.imagen %}
                                     <img src="{{producto.imagen.url}}" alt="{{producto.nombre}}" class="card-img-top">
@@ -133,7 +137,7 @@
                                     <p class="fs-6">${{ producto.precio|floatformat:"0"|intcomma:"," }}</p>
                                 </div>
                                 <div class="d-flex justify-content-center buttom">
-                                    <a href="" class="btn btn-outline-light">Agregar al carrito</a>
+                                    <a href="{% url 'agregar_producto' producto_id=producto.id  %}" class="btn btn-outline-light">Agregar al carrito</a>
                                 </div>
                             </article>
                         </div>
@@ -145,6 +149,7 @@
             
         </section>
     </section>
+
     <script>
         function enviarFiltros() {
             document.getElementById("filtrosForm").submit();

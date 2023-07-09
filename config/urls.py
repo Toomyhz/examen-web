@@ -27,6 +27,7 @@ urlpatterns = [
     path('', index, name='inicio'),
     path('', include('apps.m_user.urls')),
     path('tienda/', include('apps.m_tienda.urls')),
+    path('carrito/', include('apps.m_carrito.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG == True:

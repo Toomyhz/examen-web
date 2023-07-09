@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import *
 from django.contrib.auth import authenticate,login,logout
+from sweetify import success,warning,error
 # Create your views here.
 
 def registro(request):
@@ -13,13 +14,20 @@ def registro(request):
             password = form.cleaned_data['password1']
             user = authenticate(username=username,password=password)
             login(request,user)
-            return redirect('home')
+            return redirect('inicio')
+        else:
+            error(request,'Error al registrar usuario')
+            form = add_invalid_class(form)
+            context = {
+                'form':form
+            }
+            return render(request,'pages/m_user/registrar.html',context)
     else:
         form = FormRegister()
     context = {
         'form':form
     }
-    return render(request,'m_user/register.html',context)
+    return render(request,'pages/m_user/registrar.html',context)
 
 def entrar(request):
     if request.method == 'POST':
@@ -32,19 +40,26 @@ def entrar(request):
             )
             if user is not None:
                 login(request,user)
-                return redirect('home')
+                success(request,'Bienvenido {}'.format(user.username))
+                return redirect('inicio')
             else:
-                data_user.add_error(None,'Usuario o contraseña incorrecta')
+                warning(request,'Usuario o contraseña incorrectos')
         context = {
             'form':data_user
         }
-        return render(request,'m_user/login.html',context)
+        return render(request,'pages/m_user/entrar.html',context)
     else:
         context = {
             'form':FormLogin()
         }
-        return render(request,'m_user/login.html',context)
+        return render(request,'pages/m_user/entrar.html',context)
 
 def salir(request):
     logout(request)
-    return redirect('home')
+    success(request,'Sesión cerrada correctamente')
+    return redirect('inicio')
+
+def add_invalid_class(form):
+    for field in form.errors:
+        form[field].field.widget.attrs.update({'class': 'form-control is-invalid'})
+    return form
