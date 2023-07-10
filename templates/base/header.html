@@ -11,16 +11,16 @@
                 <form class="navbar-nav" action="{% url 'filtrar_productos' %}" method="POST">
                     {% csrf_token %}
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'inicio' %}">Inicio</a>
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'inicio' %}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'tienda' %}">Tienda</a>
+                        <a class="nav-link {% if request.path == '/tienda/' %}active{% endif %}" href="{% url 'tienda' %}">Tienda</a>
                     </li>
                     <li class="nav-item">
-                        <input type="submit" class="nav-link" name="tipo" value="Juegos"></input>
+                        <input type="submit" class="nav-link {% if request.path == '/tienda/tienda_filtrada/' %}active{% endif %}" name="tipo" value="Juegos"></input>
                     </li>
                     <li class="nav-item">
-                        <input class="nav-link" name="tipo" type="submit" value="Tarjetas"></input>
+                        <input class="nav-link {% if request.path == '/tienda/tienda_filtrada/' %}active{% endif %}" name="tipo" type="submit" value="Tarjetas"></input>
                     </li>
                 </form>
             </div>

@@ -13,7 +13,7 @@ def listar_adm(request):
         }
         return render(request, 'pages/m_admin/listar.html', context)
     else:
-        error(request, 'No tienes permisos para realizar esta acción', button='Ok', timer=5000, toast=True, position='top', icon='error')
+        error(request, 'No tienes permisos para realizar esta acción', button='Ok', timer=5000, toast=True, position='top-right', icon='error')
         return redirect('inicio')
 
 def crear_producto(request):
@@ -29,7 +29,7 @@ def crear_producto(request):
         context = {'form': formulario}
         return render(request, 'pages/m_admin/crearp.html', context)
     else:
-        error(request, 'No tienes permisos para realizar esta acción', button='Ok', timer=5000, toast=True, position='top', icon='error')
+        error(request, 'No tienes permisos para realizar esta acción', button='Ok', timer=5000, toast=True, position='top-right', icon='error')
         return redirect('inicio')
 def editar_producto(request, producto_id):
     if request.user.is_staff:
@@ -46,7 +46,7 @@ def editar_producto(request, producto_id):
         context = {'form': formulario}
         return render(request, 'pages/m_admin/editarp.html', context)
     else:
-        error(request, 'No tienes permisos para realizar esta acción', button='Ok', timer=5000, toast=True, position='top', icon='error')
+        error(request, 'No tienes permisos para realizar esta acción', button='Ok', timer=5000, toast=True, position='top-right', icon='error')
         return redirect('inicio')
     
 def borrar_producto(request, producto_id):
@@ -56,6 +56,6 @@ def borrar_producto(request, producto_id):
         warning(request, 'Producto borrado correctamente')
         return redirect('listar_adm')
     else:
-        error(request, 'No tienes permisos para realizar esta acción', button='Ok', timer=5000, toast=True, position='top', icon='error')
+        error(request, 'No tienes permisos para realizar esta acción', button='Ok', timer=5000, toast=True, position='top-right', icon='error')
         return redirect('inicio')
         
