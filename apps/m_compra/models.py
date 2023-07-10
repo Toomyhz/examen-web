@@ -12,6 +12,7 @@ class Compra(models.Model):
 class DetalleCompra(models.Model):
     compra = models.ForeignKey(Compra, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.IntegerField()
     monto_detalle = models.IntegerField()
     def __str__(self):
-        return self.juego
+        return self.producto.nombre

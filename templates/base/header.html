@@ -32,10 +32,9 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
                         {% if user.is_staff %}
-                            <li><a class="dropdown-item text-info active" href="{% url 'listar_adm' %}">Administrador de productos</a></li>
+                            <li><a class="dropdown-item text-info {% if request.resolver_match.url_name == 'listar_adm' %}active{% endif %}" href="{% url 'listar_adm' %}">Administrador de productos</a></li>
                         {% endif %}
-                        <li><a class="dropdown-item " href="#">Mis compras</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item {% if request.resolver_match.url_name == 'mostrar_compras' or request.resolver_match.url_name == 'detalle_compra'%}active{% endif %}" href="{% url 'mostrar_compras' %}">Mis compras</a></li>
                         <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Cerrar sesión</a></li>
                     </ul>
                   </div>

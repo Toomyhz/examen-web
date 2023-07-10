@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Mis compras | PixelGame{% endblock title %}
+{% block content %}
+<main class="container">
+    <section class="alert alert-dark mt-3" role="alert">
+        <h2 class="text-center">Mis compras</h2>
+    </section>
+    <section>
+        <div>
+            {% if compras %}
+            <table class="table table-striped table-hover table-dark">
+                <thead>
+                    <tr class="row mx-0">
+                        <th class="col-3">Fecha</th>
+                        <th class="col-3">Id</th>
+                        <th class="col-3">Total</th>
+                        <th class="col-3">Ver detalle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for compra in compras %}
+                    <tr class="row mx-0">
+                        <td class="col">{{ compra.fecha }}</td>
+                        <td class="col">{{ compra.id }}</td>
+                        <td class="col">{{ compra.monto_total }}</td>
+                        <td class="col">
+                            <a href="{% url 'detalle_compra' compra_id=compra.id %}" class="btn btn-success">Ver detalle</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="alert alert-warning">
+                <h3 class="text-center">No hay compras</h3>
+                <a href="{% url 'tienda' %}" class="btn btn-danger">Ir a la tienda</a>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock content %}

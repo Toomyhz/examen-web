@@ -14,6 +14,7 @@ def registro(request):
             password = form.cleaned_data['password1']
             user = authenticate(username=username,password=password)
             login(request,user)
+            success(request,'Usuario registrado correctamente')
             return redirect('inicio')
         else:
             error(request,'Error al registrar usuario')

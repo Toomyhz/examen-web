@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Producto, Genero, Plataforma, Tipo
 from django.db.models import Q
 from django.db.models import Count
+
 # Create your views here.
 def tienda(request):
 
@@ -33,7 +34,6 @@ def tienda(request):
 
 def filtrar_productos(request):
     if request.method == 'POST':
-
         if request.POST.get('tipo') == "Juegos":
             tipos_seleccionados = [1]
         elif request.POST.get('tipo') == "Tarjetas":

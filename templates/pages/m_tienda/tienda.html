@@ -114,19 +114,21 @@
             </div>
             {% else %}
             <div class="row">
+                <div class="col-12 col-md-6">
                 {% if cantidad_productos %}
-                <div>
-                    <h5>Resultados encontrados {{ cantidad_productos }}  </h5>
+                <div class="rounded px-2 mb-2" style="background-color: var(--bs-info-bg-subtle)">
+                    Resultados encontrados: <b>{{ cantidad_productos }}</b>
                 </div>
                 {% endif %}
                 {% if busqueda %}
-                <div>
-                    <h5>Resultados de la busqueda {{ busqueda }}  </h5>
+                <div class="rounded px-2" style="background-color: var(--bs-info-bg-subtle)">
+                    Resultados de la busqueda: <b>{{ busqueda }}</b>
                 </div>
                 {% endif %}
+                </div>
                 <section class="row mx-0">
                     {% for producto in productos %}
-                        <div class="py-3 col-12 col-md-3" >
+                        <div class="py-3 col-12 col-md-4  col-lg-3" >
                             <article class="card h-100 bg-dark pb-2">
                                     {% if producto.imagen %}
                                     <img src="{{producto.imagen.url}}" alt="{{producto.nombre}}" class="card-img-top">

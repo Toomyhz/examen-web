@@ -6,7 +6,7 @@
     <section class="alert alert-dark mt-3" role="alert">
         <h2 class="text-center">Carrito de compras</h2>
         {%if carrito %}
-        <a href="{% url 'limpiar_carrito' %}" class="btn btn-danger">Vaciar carrito</a>
+        <a href="{% url 'limpiar_carrito' %}" class="btn btn-warning">Vaciar carrito</a>
         {% endif %}
     </section>
     <section>
@@ -16,31 +16,39 @@
                 <thead>
                     <tr>
                         <th>Producto</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Subtotal</th>
-                        <th>Eliminar</th>
+                        <th class="text-center">Precio</th>
+                        <th class="text-center">Cantidad</th>
+                        <th class="text-center">Subtotal</th>
+                        <th class="text-center">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for producto in carrito %}
                     <tr>
                         <td>{{ producto.nombre }}</td>
-                        <td>{{ producto.precio }}</td>
-                        <td>{{ producto.cantidad }}</td>
-                        <td>{{ producto.subtotal }}</td>
+                        <td class="text-center">{{ producto.precio }}</td>
                         <td>
-                            <a href="{% url 'eliminar_producto' producto_id=producto.producto_id %}" class="btn btn-danger">Eliminar</a>
+                            <div class="d-flex justify-content-evenly">
+                                <a href="{% url 'restar_producto' producto_id=producto.producto_id %}" class="text-info border rounded border-info"><i class="bi bi-dash"></i></a>{{ producto.cantidad }}<a href="{% url 'agregar_producto' producto_id=producto.producto_id %}" class="text-info border rounded border-info"><i class="bi bi-plus"></i></a>
+                            </div>
+                        </td>
+                        <td class="text-center">{{ producto.subtotal }}</td>
+                        <td class="text-center">
+                            <a href="{% url 'eliminar_producto' producto_id=producto.producto_id %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Eliminar</a>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+            <h3>Total: ${{ total }}</h3>
+            <div class="d-flex justify-content-center">
+                <a href="{% url 'tienda' %}" class="btn btn-info"><i class="bi bi-shop"></i> Seguir comprando</a>
+                <a href="{% url 'confirmar_compra' %}" class="btn btn-success">Continuar</a>
+            </div>
             {% else %}
             <div class="alert alert-warning">
                 <h3 class="text-center">No hay productos en el carrito</h3>
-                <a href="{% url 'tienda' %}" class="btn btn-danger">Ir a la tienda</a>
-
+                <a href="{% url 'tienda' %}" class="btn btn-info">Ir a la tienda</a>
             </div>
             {% endif %}
         </div>

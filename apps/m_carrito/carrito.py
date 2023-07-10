@@ -13,7 +13,7 @@ class Carrito:
                 "producto_id":producto.id,
                 "nombre":producto.nombre,
                 "precio":str(producto.precio),
-                "cantidad":1,
+                "cantidad":1
             }
         else:
             for key, value in self.carrito.items():

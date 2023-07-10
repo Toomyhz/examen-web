@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Mis compras | PixelGame{% endblock title %}
+{% block content %}
+    <main class="container">
+        <section class="row mx-0">
+            <h2 class="col-12">Detalles de la compra</h2>
+            <div class="col-12 row">
+                <table class="bg-body-tertiary col-12 col-md-6">
+                        <tr class="border">
+                            <th class="col-md-2 border">Nombre:</th>
+                            <th>{{ compra.usuario.first_name }} {{ compra.usuario.last_name }}</th>
+                        </tr>
+                        <tr class="border">
+                            <th class="col-md-2 border">Id compra:</th>
+                            <th>{{ compra.id }}</th>
+                        </tr>
+                        <tr class="border">
+                            <th class="col-md-2 border">Fecha:</th>
+                            <th>{{ compra.fecha }}</th>
+                        </tr>
+                        <tr class="border">
+                            <th class="col-md-2 border">Total:</th>
+                            <th>${{ compra.monto_total }}</th>
+                        </tr>
+                </table>
+            </div>
+            <table class="table table-dark col-12 mt-3">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for detalle in detalles %}
+                    <tr>
+                        <td>{{ detalle.producto.nombre }}</td>
+                        <td>{{ detalle.cantidad }}</td>
+                        <td>${{ detalle.producto.precio }}</td>
+                        <td>${{ detalle.monto_detalle }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total</td>
+                        <td>${{ compra.monto_total }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <a href="{% url 'mostrar_compras' %}" class="btn btn-primary col-12 col-md-2">Volver</a>
+        </section>
+    </main>
+{% endblock content %}
