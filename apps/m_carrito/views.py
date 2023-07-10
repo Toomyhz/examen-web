@@ -3,7 +3,7 @@ from .carrito import Carrito
 from apps.m_tienda.models import Producto
 from django.contrib.auth.decorators import login_required
 # Create your views here.
-@login_required
+@login_required(login_url='login')
 def mostrar_carrito(request):
     carrito = Carrito(request)
     contenido = carrito.obtener_carrito()
