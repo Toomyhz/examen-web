@@ -1,0 +1,18 @@
+@import url('https://fonts.cdnfonts.com/css/public-pixel');
+.pixelgame{
+    text-decoration: none;
+    font-family: 'Public Pixel';
+    font-size: 15px;
+    color: #e0e0e0;
+    transition: 0.5s;
+    margin-right: 15px;
+}
+
+.pixelgame:hover{
+    text-decoration: none;
+    font-family: 'Public Pixel';
+    font-size: 15px;
+    color: #aa6dff;
+    transition: 0.5s;
+    text-shadow: 0px 0px 14px #9500ff;
+}
